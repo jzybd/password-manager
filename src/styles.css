@@ -1,0 +1,393 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #c3caea;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  header {
+    background: #a8b0d4;
+    color: white;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .title {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .title span {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  
+  button {
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .password-add {
+    padding: 12px 24px;
+    color: #ebebeb;
+    font-weight: 600;
+    background: #7f87ab;
+  }
+  
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s;
+    padding: 20px;
+  }
+  
+  .modal-content {
+    background: #5763a5;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .modal-form {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+  }
+  
+  
+  .modal input {
+    width: 100%;
+    padding: 14px;
+    margin: 15px 0;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  .modal input:focus {
+    outline: none;
+    border-color: #667eea;
+  }
+  
+  .submit-btn {
+    background:#667eea;
+    color: white;
+    width: 100%;
+    font-size: 1.1rem;
+  }
+  
+  .close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #000;
+    padding: 1px;
+    z-index: 10;
+  }
+  
+  .close-icon:hover {
+    transform: translateY(-2px);
+  }
+
+  .error {
+    color: #e74c3c;
+    background: #fdf2f2;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 15px 0;
+    text-align: center;
+    border: 1px solid #e74c3c;
+  }
+
+  .no-passwords-message {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 15px;
+    padding: 40px;
+    color: #ebebeb;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .no-passwords-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+  }
+  
+  .password-list {
+    background: #7683cb;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 25px;
+  }
+  
+  .password-item {
+    background: #7683cb;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #ebebeb;
+  }
+  
+  
+  .password-item p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #ebebeb;
+  }
+  
+  .copy-btn, .remove-btn {
+    background: #7683cb;
+    margin: 0px 10px 5px 0px;
+  }
+
+  .img-invert {
+    filter: invert(1) brightness(1.8) contrast(0.9);
+  }
+  
+  
+  
+  .password-generator {
+    margin-top: 20px;
+    background: #7683cb;
+    padding: 30px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
+  .password-generator h3 {
+    color: #ebebeb;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .generator-content {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .settings-panel {
+    flex: 1;
+    max-width: 450px;
+  }
+  
+  .result-panel {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .settings {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .settings label {
+    display: block;
+    font-weight: 500;
+    color: #ebebeb;
+    font-size: 0.95rem;
+  }
+
+  
+  .checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    width: max-content;
+  }
+  
+  .checkbox-label input[type="checkbox"] {
+    margin: 0px 4px 0px 0px;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+  }
+  
+  .checkbox-label span {
+    color: #ebebeb;
+    font-size: 0.95rem;
+  }
+
+  .input-rounded {
+    border-radius: 8px;
+  }
+  
+
+  input[type="number"] {
+    margin-left: 8px;
+    padding: 2px 4px;
+    max-width: 150px;
+    border: 1px solid #7683cb;
+  }
+  
+
+  input[type="checkbox"]:disabled {
+    opacity: 0.5;
+  }
+
+  
+  .settings input[type="text"],
+  .settings select {
+    width: 90%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-top: 6px;
+    font-size: 0.9rem;
+    transition: border-color 0.3s;
+  }
+  
+  .settings input[type="text"]:focus,
+  .settings select:focus {
+    outline: none;
+    border-color: #1abc9c;
+  }
+  
+  .generate-btn {
+    background: rgb(60, 99, 179);
+    color: white;
+    padding: 16px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.3s;
+  }
+  
+  .generate-btn.full-width {
+    width: 100%;
+    display: block;
+  }
+  
+  .generate-btn:hover {
+    opacity: 0.9;
+  }
+  
+  .result {
+    text-align: center;
+    padding: 20px;
+    background: #e8f4f8;
+    border-radius: 12px;
+    font-weight: 500;
+    color: #2980b9;
+    word-break: break-all;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    border: 1px solid #1abc9c;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .app {
+      border-radius: 12px;
+      margin: 10px;
+    }
+  
+    header {
+      padding: 20px;
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
+    }
+  
+    .title {
+      align-items: center;
+    }
+  
+    .password-list {
+      grid-template-columns: 1fr;
+      padding: 15px;
+    }
+  
+    .generator-container {
+      flex-direction: column;
+    }
+  
+    .settings-panel,
+    .result-panel {
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .modal form {
+      max-width: 95%;
+      padding: 20px;
+    }
+  
+    .title span {
+      font-size: 1.5rem;
+    }
+  
+    button {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+  }
+  
